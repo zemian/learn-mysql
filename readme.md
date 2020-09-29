@@ -2,6 +2,12 @@
 
 https://dev.mysql.com/doc/refman/8.0/en/
 
+More references:
+* https://dev.mysql.com/doc/refman/8.0/en/mysql-command-options.html How to use `mysql` client
+* https://dev.mysql.com/doc/refman/8.0/en/data-types.html - Data types
+* https://dev.mysql.com/doc/refman/8.0/en/sql-function-reference.html Functions & Operators
+* https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html SQL statements
+
 ## MySQL 8 on Mac
 
 ```bash

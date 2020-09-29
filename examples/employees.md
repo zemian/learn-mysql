@@ -7,5 +7,6 @@ https://dev.mysql.com/doc/employee/en/employees-installation.html
     ```sh
     shell> unzip test_db-master.zip
     shell> cd test_db-master/
-    shell> mysql -t < employees.sql
+    shell> mysql -u root -t < employees.sql
+    # Option -t is for display output in table format
     ```
