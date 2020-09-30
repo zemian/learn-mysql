@@ -37,19 +37,22 @@ More references:
 
 ## Quick Client Commands
 
-```sql
+```
 show databases;
 use testdb;
 show tables;
+desc hello;
 select version();
 select * \c;
+exit
 ```
 
 ## Quick SQL Test
 
-```
+```sql
 create table hello(name text, num int);
 insert into hello values('foo', 123);
+insert into hello values('foo2', 123);
 select * from hello;
 update hello set num = 99 where name = 'foo';
 delete from hello where name = 'foo';
