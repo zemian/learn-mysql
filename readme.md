@@ -60,7 +60,11 @@ delete from hello where name = 'foo';
 
 ## Loading SQL from file
 
+Using the client on bash:
+
     mysql -u root < input.sql
+
+Or inside the client, you may use the `source` command.
 
 ## New Database Setup
 
