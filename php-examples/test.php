@@ -104,12 +104,12 @@ try {
 	// var_dump(select_by_id($conn, 1));
 	// var_dump(select_by_cat($conn, 'test'));
 
-	// insert($conn, 'php', 0.10, 1);
-	// insert($conn, 'php', 0.20, 2);
-	// select_by_cat($conn, 'php');
+	// var_dump(insert($conn, 'php', 0.10, 1));
+	// var_dump(insert($conn, 'php', 0.20, 2));
+	// var_dump(select_by_cat($conn, 'php'));
 	
 	// var_dump(select_total($conn, 'php'));
-	// update($conn, 26, 0.99, 10);
+	// var_dump(update($conn, 26, 0.99, 10));
 	// var_dump(select_total($conn, 'php'));
 	
 	// var_dump(select_by_id($conn, 26));
