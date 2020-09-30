@@ -1,27 +1,26 @@
 import mysql.connector
 conn = mysql.connector.connect(user='zemian', password='test123', host='localhost', database='testdb')
 
-def select(conn):
+def select_all(conn):
 	cursor = conn.cursor()
 	cursor.execute('SELECT * FROM test')
-	for row in cursor:
-		print("{}".format(row))
+	ret = cursor.fetchall()
 	cursor.close()
+	return ret
 
 def select_by_id(conn, id):
 	cursor = conn.cursor()
 	cursor.execute('SELECT * FROM test WHERE id = %s', (id,))
 	ret = cursor.fetchone()
 	cursor.close()
-	print("Record: {}".format(ret))
 	return ret
 
 def select_by_cat(conn, cat):
 	cursor = conn.cursor()
 	cursor.execute('SELECT * FROM test WHERE cat = %s', (cat,))
-	for row in cursor:
-		print("{}".format(row))
+	ret = cursor.fetchall()
 	cursor.close()
+	return ret
 
 def select_total(conn, cat):
 	cursor = conn.cursor()
@@ -31,40 +30,62 @@ def select_total(conn, cat):
 	return ret
 
 def insert(conn, cat, price, qty):
+	ret = None
 	cursor = conn.cursor()
 	cursor.execute('INSERT INTO test(cat, price, qty) VALUES (%s, %s, %s)', (cat, price, qty))
-	id = cursor.lastrowid
 	if (cursor.rowcount):
-		print("Inserted ID={}".format(id))
+		ret = cursor.lastrowid
 	cursor.close()
 	conn.commit()
+	return ret
 
 def update(conn, id, price, qty):
+	ret = None
 	cursor = conn.cursor()
 	cursor.execute('UPDATE test SET price = %s, qty = %s WHERE id = %s', (price, qty, id))
 	if (cursor.rowcount):
-		print("Updated ID={}".format(id))
+		ret = id
 	cursor.close()
 	conn.commit()
+	return ret
 
 def delete(conn, id):
+	ret = None
 	cursor = conn.cursor()
 	cursor.execute('DELETE FROM test WHERE id = %s', (id,))
 	if (cursor.rowcount):
-		print("Deleted ID={}".format(id))
+		ret = id
 	cursor.close()
 	conn.commit()
+	return ret
+
+def delete_by_cat(conn, cat):
+	cursor = conn.cursor()
+	cursor.execute('DELETE FROM test WHERE cat = %s', (cat,))
+	ret = cursor.rowcount
+	cursor.close()
+	conn.commit()
+	return ret
 
 try:
-	# select(conn)
-	# select_by_cat(conn, 'test')
-	#insert(conn, 'py', 0.10, 1)
-	#insert(conn, 'py', 0.20, 2)
-	#print("Total: {}".format(select_total(conn, 'py')))
-	# update(conn, 23, 0.99, 10)
-	#delete(conn, 23)
-	#select_by_id(conn, 23)
-	#insert(conn, 'py', 0.20, 2)
-	select_by_cat(conn, 'py')
+	print(select_all(conn))
+	# print(select_by_id(conn, 1))
+	# print(select_by_cat(conn, 'test'))
+
+	# print(insert(conn, 'py', 0.10, 1))
+	# print(insert(conn, 'py', 0.20, 2))
+	# print(select_by_cat(conn, 'py'))
+	
+	# print(select_total(conn, 'py'))
+	# print(update(conn, 37, 0.99, 10))
+	# print(select_total(conn, 'py'))
+	
+	# print(select_by_id(conn, 37))
+	# print(delete(conn, 37))
+	# print(select_by_id(conn, 37))
+
+	# print(select_by_cat(conn, 'py'))
+	# print(delete_by_cat(conn, 'py'))
+	# print(select_by_cat(conn, 'py'))
 finally:
 	conn.close()
