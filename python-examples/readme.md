@@ -1,3 +1,5 @@
+You need to instal Python3 to run this example.
+
 ## Setup Python with MySQL Driver
 
 ```sh

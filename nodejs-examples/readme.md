@@ -1,3 +1,5 @@
+You need to download NodeJS to run this example
+
 ## Using `mysql` NodeJS driver 
 
 To install:
