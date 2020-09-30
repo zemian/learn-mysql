@@ -1,16 +1,19 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
+// A simple DB connection test 
+var mysql = require('mysql');
+var conn = mysql.createConnection({
   host     : 'localhost',
   user     : 'zemian',
   password : 'test123',
   database : 'testdb'
-});
+}); 
+conn.connect();
+
+try {
+	conn.query('SELECT 1 + 1 as result', function (error, results) {
+	  if (error) throw error;
+	  console.log('Connection successful! Test Result: ', results[0].result);
+	});
+} finally {
+	conn.end();
+}
  
-connection.connect();
- 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
-});
- 
-connection.end();
