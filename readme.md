@@ -2,13 +2,40 @@
 
 https://dev.mysql.com/doc/refman/8.0/en/
 
+## Server Setup
+
+For a brand new mysql installation:
+
+```
+export PATH=/usr/local/mysql/bin:$PATH
+cd /usr/local/var
+mysqld --datadir=./mysql-data --initialize-insecure
+mysqld --datadir=./mysql-data --port=3306
+
+# To shutdown, you must use another terminal:
+mysqladmin -u root shutdown
+
+# To connect with client
+mysql --port=3306 -u root
+```
+
+* The `--initialize-insecure` means to init with root without password. If you do not use use this, the password will print on console, and you must copy it.
+* On MacOS, the Homebrew might install mysql into `/usr/local/opt/mysql` instead.
+* If `--datadir` path is just a folder name, then it will be relative to installation path.
+* You may use explicit server encoding: `--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci`
+* You can also shutdown withg  `kill <PID>` command
+
+For more server options see https://dev.mysql.com/doc/refman/8.0/en/server-options.html
+
+## Docs
+
 More references:
 * https://dev.mysql.com/doc/refman/8.0/en/mysql-command-options.html How to use `mysql` client
 * https://dev.mysql.com/doc/refman/8.0/en/data-types.html - Data types
 * https://dev.mysql.com/doc/refman/8.0/en/sql-function-reference.html Functions & Operators
 * https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html SQL statements
 
-## MySQL 8 on Mac
+## Install and Setup MySQL 8 on Mac
 
 ```bash
 brew install services mysql
