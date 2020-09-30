@@ -45,7 +45,19 @@ select version();
 select * \c;
 ```
 
-    bash> mysql -u root < input.sql
+## Quick SQL Test
+
+```
+create table hello(name text, num int);
+insert into hello values('foo', 123);
+select * from hello;
+update hello set num = 99 where name = 'foo';
+delete from hello where name = 'foo';
+```
+
+## Loading SQL from file
+
+    mysql -u root < input.sql
 
 ## New Database Setup
 
