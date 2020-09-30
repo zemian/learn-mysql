@@ -8,60 +8,85 @@ var conn = mysql.createConnection({
 });
 conn.connect();
 
-function select(conn) {
+function selectAll(conn, callback) {
 	conn.query('SELECT * FROM test', function (error, results) {
 	  if (error) throw error;
-	  results.forEach(row => console.log(row));
+	  callback(results);
 	});	
 }
 
-function selectByCat(conn, cat) {
+function selectById(conn, id, callback) {
+	conn.query('SELECT * FROM test WHERE id = ?', [id], function (error, results) {
+	  if (error) throw error;
+	  callback(results[0]);
+	});	
+}
+
+function selectByCat(conn, cat, callback) {
 	conn.query('SELECT * FROM test WHERE cat = ?', [cat], function (error, results) {
 	  if (error) throw error;
-	  results.forEach(row => console.log(row));
+	  callback(results);
 	});
 }
 
-function getTotal(conn, cat) {
+function selectTotal(conn, cat, callback) {
 	conn.query('SELECT sum(price) AS total FROM test WHERE cat = ?', [cat], function (error, results) {
 	  if (error) throw error;
 	  ret = results[0].total;
-	  // Notice that we can't return ret due to JS callback unless we do await/async
-	  console.log("Total: ", ret);
+	  callback(ret)
 	});
 }
 
-function insert(conn, cat, price, qty) {
+function insert(conn, cat, price, qty, callback) {
 	conn.query('INSERT INTO test(cat, price, qty) VALUES (?, ?, ?)', [cat, price, qty], function (error, results) {
 	  if (error) throw error;
-	  console.log("Insert result=", results);
+	  callback(results)
 	});
 }
 
-function update(conn, id, price, qty) {
+function update(conn, id, price, qty, callback) {
 	conn.query('UPDATE test SET price = ?, qty = ? WHERE id = ?', [price, qty, id], function (error, results) {
 	  if (error) throw error;
-	  console.log("Update result=", results);
+	  callback(results)
 	});
 }
 
-function deleteById(conn, id) {
+function deleteById(conn, id, callback) {
 	conn.query('DELETE FROM test WHERE id = ?', [id], function (error, results) {
 	  if (error) throw error;
-	  console.log("Delete result=", results);
+	  callback(results)
 	});
 }
 
+function deleteByCat(conn, cat, callback) {
+	conn.query('DELETE FROM test WHERE cat = ?', [cat], function (error, results) {
+	  if (error) throw error;
+	  callback(results)
+	});
+}
+
+
 try {
-	// Run example
-	//select(conn);
-	//selectByCat(conn, 'test');
-	//insert(conn, 'nodejs', 0.10, 1);
-	//insert(conn, 'nodejs', 0.20, 2);
-	//getTotal(conn, 'nodejs');
-	//update(conn, 13, 0.99, 10);
-	//deleteById(conn, 13);
-	selectByCat(conn, 'nodejs');	
+	selectAll(conn, (ret) => console.log(ret));
+	// selectById(conn, 1, (ret) => console.log(ret));
+	// selectByCat(conn, 'test', (ret) => console.log(ret));
+
+	// insert(conn, 'js', 0.10, 1, (ret) => console.log(ret));
+	// insert(conn, 'js', 0.20, 2, (ret) => console.log(ret));
+	// selectByCat(conn, 'js', (ret) => console.log(ret));
+	
+	// selectTotal(conn, 'js', (ret) => console.log(ret));
+	// update(conn, 39, 0.99, 10, (ret) => console.log(ret));
+	// selectTotal(conn, 'js', (ret) => console.log(ret));
+	
+	// //selectById(conn, 39, (ret) => console.log(ret));
+	// deleteById(conn, 39, (ret) => console.log(ret));
+	// selectById(conn, 39, (ret) => console.log(ret));
+
+	// //selectByCat(conn, 'js', (ret) => console.log(ret));
+	// deleteByCat(conn, 'js', (ret) => console.log(ret));
+	// selectByCat(conn, 'js', (ret) => console.log(ret));
+
 } finally {
 	conn.end();	
 }
