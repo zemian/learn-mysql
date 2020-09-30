@@ -89,8 +89,18 @@ function delete($conn, $id) {
 	return $ret;
 }
 
+function delete_by_cat($conn, $cat) {
+	$stmt = $conn->prepare('DELETE FROM test WHERE cat = ?');
+	$stmt->bind_param('s', $cat);
+	$stmt->execute();
+	$ret = $stmt->affected_rows;
+	$stmt->close();
+	return $ret;
+}
+
+
 try {
-	// var_dump(select_all($conn));
+	var_dump(select_all($conn));
 	// var_dump(select_by_id($conn, 1));
 	// var_dump(select_by_cat($conn, 'test'));
 
@@ -104,8 +114,11 @@ try {
 	
 	// var_dump(select_by_id($conn, 26));
 	// var_dump(delete($conn, 26));
-	
-	var_dump(select_by_cat($conn, 'php'));
+	// var_dump(select_by_id($conn, 26));
+
+	// var_dump(select_by_cat($conn, 'php'));
+	// var_dump(delete_by_cat($conn, 'php'));
+	// var_dump(select_by_cat($conn, 'php'));
 } finally {
 	$conn->close();
 }
