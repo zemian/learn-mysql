@@ -39,7 +39,7 @@ More references:
 
 ```sql
 show databases;
-use zemiandb;
+use testdb;
 show tables;
 select version();
 select * \c;
@@ -51,8 +51,8 @@ select * \c;
 
 ```sql
 CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
-CREATE DATABASE zemiandb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-GRANT ALL PRIVILEGES ON zemiandb.* TO 'zemian'@'localhost';
+CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -60,7 +60,7 @@ FLUSH PRIVILEGES;
 
 Here is an example table and few rows of sample data for testing:
 
-    mysql -u root zemiandb < examples/test.sql
+    mysql -u root testdb < examples/test.sql
 
 ## Authentication
 
@@ -88,11 +88,11 @@ mysql -u root
 mysql -u root
 
 CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
-CREATE DATABASE zemiandb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-GRANT ALL PRIVILEGES ON zemiandb.* TO 'zemian'@'localhost';
+CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 FLUSH PRIVILEGES;
 
-mysql -u zemian -p zemiandb
+mysql -u zemian -p testdb
 
 CREATE TABLE config(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), value VARCHAR(1000));
 INSERT INTO config(name, value) values('foo', 'bar'), ('num', '123');
@@ -142,9 +142,9 @@ mysqladmin -u root -p password ''
 
 ```
 # Backup
-mysqldump --single-transaction --quick --no-autocommit --extended-insert=false -u root zemiandb > zemiandb-`date +%s`-dump.sql
+mysqldump --single-transaction --quick --no-autocommit --extended-insert=false -u root testdb > testdb-`date +%s`-dump.sql
 
 # Restore
-mysql -f -u root zemiandb < zemiandb-<date>-dump.sql
+mysql -f -u root testdb < testdb-<date>-dump.sql
 ```
 
