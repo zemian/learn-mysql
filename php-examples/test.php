@@ -8,8 +8,8 @@ $dbname = "testdb";
 $conn = new mysqli($host, $username, $password, $dbname);
 
 function select_all($conn) {
-	$result = $conn->query('SELECT * FROM test');
 	$ret = [];
+	$result = $conn->query('SELECT * FROM test');
 	while($row = $result->fetch_assoc()) {
 		array_push($ret, $row);
 	}
@@ -29,15 +29,17 @@ function select_by_id($conn, $id) {
 }
 
 function select_by_cat($conn, $cat) {
+	$ret = [];
 	$stmt = $conn->prepare('SELECT * FROM test WHERE cat = ?');
 	$stmt->bind_param('s', $cat);
 	$stmt->execute();
 	$result = $stmt->get_result();
 	while($row = $result->fetch_assoc()) {
-		var_dump($row);
+		array_push($ret, $row);
 	}
 	$result->close();
 	$stmt->close();
+	return $ret;
 }
 
 function select_total($conn, $cat) {
@@ -103,7 +105,7 @@ try {
 	// var_dump(select_by_id($conn, 26));
 	// var_dump(delete($conn, 26));
 	
-	select_by_cat($conn, 'php');
+	var_dump(select_by_cat($conn, 'php'));
 } finally {
 	$conn->close();
 }
