@@ -47,6 +47,29 @@ select * \c;
 
     bash> mysql -u root < input.sql
 
+## New Database Setup
+
+```sql
+CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
+CREATE DATABASE zemiandb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON zemiandb.* TO 'zemian'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+## Test Data
+
+Here is an example table and few rows of sample data for testing:
+
+    mysql -u root zemiandb < examples/test.sql
+
+## Authentication
+
+If you want older MySQL 5 user password encryption, create user like this:
+
+    CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+
+See https://dev.mysql.com/doc/refman/8.0/en/native-pluggable-authentication.html
+
 ## Install and Setup MySQL 8 on Mac
 
 ```bash
