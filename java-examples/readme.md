@@ -1,4 +1,7 @@
-You need to download maven to compile and run this project
+You need to download JDK and Maven to compile and run this project
 
-    mvn dependency:copy-dependencies compile
-    java -cp 'target/classes:target/dependency/*' test.hello
+```sh
+mvn dependency:copy-dependencies compile
+java -cp 'target/classes:target/dependency/*' examples.hello
+java -cp 'target/classes:target/dependency/*' examples.test
+```
