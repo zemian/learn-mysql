@@ -17,7 +17,7 @@ function select_all($conn) {
 	return $ret;
 }
 
-function select($conn, $id) {
+function select_by_id($conn, $id) {
 	$stmt = $conn->prepare('SELECT * FROM test WHERE id = ?');
 	$stmt->bind_param('i', $id);
 	$stmt->execute();
@@ -89,7 +89,7 @@ function delete($conn, $id) {
 
 try {
 	// var_dump(select_all($conn));
-	// var_dump(select($conn, 1));
+	// var_dump(select_by_id($conn, 1));
 	// var_dump(select_by_cat($conn, 'test'));
 
 	// insert($conn, 'php', 0.10, 1);
@@ -100,7 +100,7 @@ try {
 	// update($conn, 26, 0.99, 10);
 	// var_dump(select_total($conn, 'php'));
 	
-	// var_dump(select($conn, 26));
+	// var_dump(select_by_id($conn, 26));
 	// var_dump(delete($conn, 26));
 	
 	select_by_cat($conn, 'php');
