@@ -35,6 +35,18 @@ More references:
 * https://dev.mysql.com/doc/refman/8.0/en/sql-function-reference.html Functions & Operators
 * https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html SQL statements
 
+## Quick Client Commands
+
+```sql
+show databases;
+use zemiandb;
+show tables;
+select version();
+select * \c;
+```
+
+    bash> mysql -u root < input.sql
+
 ## Install and Setup MySQL 8 on Mac
 
 ```bash
