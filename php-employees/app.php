@@ -8,8 +8,18 @@ echo <<<HERE
     <meta charset="utf-8">
     <title>Employees App</title>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/bulma@0.9.1/css/bulma.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 <body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="index.php">
+      <img src="https://labs.mysql.com/common/logos/mysql-logo.svg?v2" alt="Employees App" width="50" height="28">
+    </a>
+  </div>
+</nav>
+
 <section class="section">
 HERE;
 
