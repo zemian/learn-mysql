@@ -15,13 +15,13 @@ if (isset($_GET['page']) && $_GET['page'] > 0) {
 function print_table_row($row) {
 
 echo <<<HERE
-	<tr>
-		<td>{$row['emp_no']}</td>
-		<td>{$row['first_name']}</td>
-		<td>{$row['last_name']}</td>
-		<td>{$row['gender']}</td>
-		<td>{$row['hire_date']}</td>
-	</tr>
+<tr>
+	<td>{$row['emp_no']}</td>
+	<td>{$row['first_name']}</td>
+	<td>{$row['last_name']}</td>
+	<td>{$row['gender']}</td>
+	<td>{$row['hire_date']}</td>
+</tr>
 HERE;
 
 }
