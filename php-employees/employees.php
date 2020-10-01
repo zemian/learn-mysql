@@ -3,6 +3,7 @@
 
 <?php
 
+// Setup Page data
 $offset = 0;
 $limit = 10;
 $page = 1; // Current page number
@@ -10,7 +11,6 @@ if (isset($_GET['page']) && $_GET['page'] > 0) {
 	$page = (int)$_GET['page'];
 	$offset = ($page - 1) * $limit;
 }
-
 
 function print_table_row($row) {
 
@@ -38,6 +38,7 @@ HERE;
 	</tr>
 </thead>
 <tbody>
+
 <?php
 $conn = app_create_conn();
 $result = $conn->query("SELECT * FROM employees LIMIT $offset, $limit");
@@ -46,6 +47,7 @@ while($row = $result->fetch_assoc()) {
 }
 $result->close();
 ?>
+
 </tbody>
 </table>
 
