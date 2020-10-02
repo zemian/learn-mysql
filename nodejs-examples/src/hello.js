@@ -8,16 +8,16 @@ var conn = mysql.createConnection({
   database : 'testdb'
 }); 
 conn.connect();
+conn.query('SELECT 1 + 1 as result', function (error, results) {
+  if (error) throw error;
+  console.log('Connection successful! Test Result: ', results[0].result);
+});
 
-try {
-	conn.query('SELECT 1 + 1 as result', function (error, results) {
-	  if (error) throw error;
-	  console.log('Connection successful! Test Result: ', results[0].result);
-	});
-} finally {
-	// This only works because we are not using the connection pool, and 
-	// it actually will wait for conn queries to complete before it ends it!
-	// TODO: A better way is to wrap it in Promise object.
-	conn.end();
-}
- 
+//
+// NOTE: 
+// Despite this code is from their official doc, but notice we trying to end 
+// the connection right after callback query. That's usually a bad practice. 
+// But it is still working because it actually will wait for conn queries to 
+// complete before it ends it!
+// 
+conn.end();
