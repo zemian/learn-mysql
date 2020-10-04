@@ -1,14 +1,16 @@
 <?php
 
 // A simple DB connection test
+echo "Connection Test: ";
 $host = "localhost";
 $username = "zemian";
 $password = "test123";
 $dbname = "testdb";
 $conn = new mysqli($host, $username, $password, $dbname);
+echo "Successful!\n";
 
-try {
-    echo "Connection successful! Connection object=" . $conn->stat() . "\n";
-} finally {
-    $conn->close();
-}
+echo "Query Test:\n";
+$rows = $conn->query('SELECT 1 + 1');
+var_dump($rows);
+
+$conn->close();
