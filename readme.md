@@ -27,6 +27,19 @@ mysql --port=3306 -u root
 
 For more server options see https://dev.mysql.com/doc/refman/8.0/en/server-options.html
 
+## How to check where `datadir` is for a running server
+
+    mysql -u root -e 'SHOW VARIABLES WHERE Variable_Name LIKE "datadir"'
+
+In case if server is not running, and if you are using Homebrew service, you can check the `.plist` files like this:
+
+    grep datadir /usr/local/Cellar/mysql/8.0.21_1/homebrew.mxcl.mysql.plist
+
+A typical `datadir` is located at `/usr/local/var/mysql`.
+
+IMPORANT: If you are running multiple version of MySQL, it's best to use
+different `datadir` folder!
+
 ## Docs
 
 More references:
