@@ -65,7 +65,7 @@ function update(conn, id, price, qty) {
 	return new Promise(resolve => {
 		conn.query('UPDATE test SET price = ?, qty = ? WHERE id = ?', [price, qty, id], function (error, result) {
 		  if (error) throw error;
-		  resolve(1);
+		  resolve(result.affectedRows);
 		});
 	});
 }
@@ -74,19 +74,16 @@ function deleteById(conn, id) {
 	return new Promise(resolve => {
 		conn.query('DELETE FROM test WHERE id = ?', [id], function (error, result) {
 		  if (error) throw error;
-		  resolve(1);
+		  resolve(result.affectedRows);
 		});
 	});
 }
 
 function deleteByCat(conn, cat) {
-	// We need to do double query because MySQL can not get affected rows?
-	return selectByCat(conn, cat).then(rows => {
-		return new Promise(resolve => {
-			conn.query('DELETE FROM test WHERE cat = ?', [cat], function (error, result) {
-			  if (error) throw error;
-			  resolve(rows.length);
-			});
+	return new Promise(resolve => {
+		conn.query('DELETE FROM test WHERE cat = ?', [cat], function (error, result) {
+		  if (error) throw error;
+		  resolve(result.affectedRows);
 		});
 	});
 }
@@ -133,7 +130,6 @@ function isclose(a, b) {
 
 		console.log("Test getById");
 		await getById(conn, testIds[0]).then((row) => {
-			console.log("test selectById:", testIds[0]);
 			assert(row.id === testIds[0]);
 			assert(row.cat === testCat);
 			assert(isclose(row.price, 1.10));
