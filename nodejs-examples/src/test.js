@@ -101,7 +101,7 @@ function isclose(a, b) {
 		let testCount = 25;
 		let testIds = [];
 
-		console.log("Test insert with " + testCount + " rows and cat" + testCat);	
+		console.log("Test insert with " + testCount + " rows and cat=" + testCat);	
 		for (let i = 1; i <= testCount; i++) {
 			await insert(conn, testCat, 0.10 + i, i).then((id) => {
 				assert(id > 0);
