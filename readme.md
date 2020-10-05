@@ -2,6 +2,15 @@
 
 https://dev.mysql.com/doc/refman/8.0/en/
 
+## New Database & User Setup
+
+```sql
+CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
+CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
+FLUSH PRIVILEGES;
+```
+
 ## Server Setup
 
 For a brand new mysql installation:
@@ -78,15 +87,6 @@ Using the client on bash:
     mysql -u root < input.sql
 
 Or inside the client, you may use the `source` command.
-
-## New Database Setup
-
-```sql
-CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
-CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
-FLUSH PRIVILEGES;
-```
 
 ## Test Data
 
