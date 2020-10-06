@@ -98,7 +98,7 @@ Here is an example table and few rows of sample data for testing:
 
 The MySQL 8 default to use `caching_sha2_password`, while MySQL 5 is using `mysql_native_password`. The client must be supporting `caching_sha2_password` in order to connect. Otherwise, you need to change your DB user back to old password encryption like this:
 
-    CREATE USER 'nativeuser'@'localhost'IDENTIFIED WITH mysql_native_password BY 'password';
+    CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
 
 See https://dev.mysql.com/doc/refman/8.0/en/native-pluggable-authentication.html
 
