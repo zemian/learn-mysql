@@ -100,6 +100,11 @@ The MySQL 8 default to use `caching_sha2_password`, while MySQL 5 is using `mysq
 
     CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
 
+
+Or to change it:
+
+    ALTER USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+
 See https://dev.mysql.com/doc/refman/8.0/en/native-pluggable-authentication.html
 
 ## Install and Setup MySQL 8 on Mac
@@ -119,7 +124,7 @@ mysql -u root
 ```
 mysql -u root
 
-CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
 CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 FLUSH PRIVILEGES;
@@ -132,9 +137,14 @@ INSERT INTO config(name, value) values('foo', 'bar'), ('num', '123');
 
 ## How to update existing DB user password
 
-    ALTER USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+    ALTER USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
 
+NOTE: If you want empty password (eg: for root in local dev) then simply use empty quote!
 
+Alternatively you may use this command as well:
+
+    mysqladmin -u root -p'oldpassword' password 'newpassword'
+    
 ## Where is `my.cnf` file?
 
 Run `mysql --help` to see where `my.cnf` is loaded.
