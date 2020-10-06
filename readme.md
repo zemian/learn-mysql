@@ -94,11 +94,11 @@ Here is an example table and few rows of sample data for testing:
 
     mysql -u root testdb < examples/test.sql
 
-## Authentication
+## Authentication & MySQL 8 Password
 
-If you want older MySQL 5 user password encryption, create user like this:
+The MySQL 8 default to use `caching_sha2_password`, while MySQL 5 is using `mysql_native_password`. The client must be supporting `caching_sha2_password` in order to connect. Otherwise, you need to change your DB user back to old password encryption like this:
 
-    CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+    CREATE USER 'nativeuser'@'localhost'IDENTIFIED WITH mysql_native_password BY 'password';
 
 See https://dev.mysql.com/doc/refman/8.0/en/native-pluggable-authentication.html
 
