@@ -5,11 +5,18 @@ https://dev.mysql.com/doc/refman/8.0/en/
 ## New Database & User Setup
 
 ```sql
-CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
+CREATE USER IF NOT EXISTS 'zemian'@'localhost' IDENTIFIED BY 'test123';
 CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
-FLUSH PRIVILEGES;
 ```
+
+## When to use `FLUSH PRIVILEGES` ?
+
+The `FLUSH PRIVILEGES` is NOT needed if you use `GRANT` command. 
+
+Privileges assigned through GRANT option do not need FLUSH PRIVILEGES to take effect - MySQL server will notice these changes and reload the grant tables immediately.
+
+https://stackoverflow.com/questions/36463966/when-is-flush-privileges-in-mysql-really-needed
 
 ## Server Setup
 
