@@ -10,6 +10,11 @@ CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 ```
 
+To support older (MySQL 5) clients, it might be useful to create a user that uses older hashing algorithm
+  
+  CREATE USER IF NOT EXISTS 'zemiannative'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+  GRANT ALL PRIVILEGES ON testdb.* TO 'zemiannative'@'localhost';
+
 ## When to use `FLUSH PRIVILEGES` ?
 
 The `FLUSH PRIVILEGES` is NOT needed if you use `GRANT` command. 
