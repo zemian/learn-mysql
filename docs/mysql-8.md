@@ -14,7 +14,8 @@ mysqladmin -u root shutdown
 echo '
 [mysqld]
 port=3306
-socket=/usr/local/var/mysql-8-data/mysql.sock
+# Do not change default socket file so "mysql" client can connect easily
+#socket=/usr/local/var/mysql-8-data/mysql.sock
 log-error=/usr/local/var/mysql-8-data/mysqld.log
 ' > /usr/local/opt/mysql/my.cnf
 
