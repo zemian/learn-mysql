@@ -29,9 +29,9 @@ For a brand new mysql installation:
 
 ```
 export PATH=/usr/local/mysql/bin:$PATH
-cd /usr/local/var
-mysqld --datadir=./mysql-data --initialize-insecure
-mysqld --datadir=./mysql-data --port=3306
+mkdir /usr/local/var/mysql-data
+mysqld --datadir=/usr/local/var/mysql-data --initialize-insecure
+mysqld --datadir=/usr/local/var/mysql-data --port=3306
 
 # To shutdown, you must use another terminal:
 mysqladmin -u root shutdown
@@ -47,6 +47,33 @@ mysql --port=3306 -u root
 * You can also shutdown withg  `kill <PID>` command
 
 For more server options see https://dev.mysql.com/doc/refman/8.0/en/server-options.html
+
+## Where to add my.cnf file
+
+Option1: Add to where installation folder is (global): /usr/local/mysql
+Option2: Add to where data directory is: /usr/local/var/mysql-data
+Option3: Add to anywhere and use: mysqld -defaults-file=my.cnf
+
+Example of my.cnf
+
+```
+[mysqld]
+port=3306
+socket=/usr/local/var/mysql-data/mysql.sock
+log-error=/usr/local/var/mysql-data/mysqld.log 
+```
+
+More my.cnf examples:
+
+https://dev.mysql.com/doc/refman/8.0/en/option-files.html
+
+```
+[mysqld]
+port=3306
+socket=/tmp/mysql.sock
+key_buffer_size=16M
+max_allowed_packet=128M
+```
 
 ## How to check where `datadir` is for a running server
 
@@ -200,5 +227,14 @@ mysqldump --single-transaction --quick --no-autocommit --extended-insert=false -
 
 # Restore
 mysql -f -u root testdb < testdb-<date>-dump.sql
+```
+
+
+## TODO: MySQL 8 startup warnings
+
+```
+2020-11-16T15:14:21.848873Z 0 [Warning] [MY-013242] [Server] --character-set-server: 'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous.
+2020-11-16T15:14:21.848891Z 0 [Warning] [MY-013244] [Server] --collation-server: 'utf8_unicode_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead.
+2020-11-16T15:14:21.849725Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /usr/local/var/mysql/ is case insensitive
 ```
 
