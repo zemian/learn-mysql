@@ -15,6 +15,11 @@ To support older (MySQL 5) clients, it might be useful to create a user that use
   CREATE USER IF NOT EXISTS 'zemiannative'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
   GRANT ALL PRIVILEGES ON testdb.* TO 'zemiannative'@'localhost';
 
+
+If you want the user to have acess to all DB, then run:
+
+    GRANT ALL ON *.* TO 'zemian'@'localhost';
+
 ## When to use `FLUSH PRIVILEGES` ?
 
 The `FLUSH PRIVILEGES` is NOT needed if you use `GRANT` command. 
