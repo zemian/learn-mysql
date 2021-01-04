@@ -23,7 +23,7 @@ function insert(conn, cat, price, qty) {
 }
 
 // Use this to test whether record exists. It returns array.
-function selectById(conn, id) {
+function selectById(conn, id): Promise<Array<any>> {
 	return new Promise(resolve => {
 		conn.query('SELECT * FROM test WHERE id = ?', [id], function (error, result) {
 		  if (error) throw error;
@@ -33,7 +33,7 @@ function selectById(conn, id) {
 }
 
 // Throws exception if record does not exists. It returns an object.
-function getById(conn, id) {
+function getById(conn, id): Promise<any> {
 	return new Promise(resolve => {
 		conn.query('SELECT * FROM test WHERE id = ?', [id], function (error, result) {
 		  if (error) throw error;
@@ -42,7 +42,7 @@ function getById(conn, id) {
 	});
 }
 
-function selectByCat(conn, cat) {
+function selectByCat(conn, cat): Promise<Array<any>> {
 	return new Promise(resolve => {
 		conn.query('SELECT * FROM test WHERE cat = ?', [cat], function (error, result) {
 		  if (error) throw error;
@@ -55,7 +55,7 @@ function selectTotal(conn, cat) {
 	return new Promise(resolve => {
 		conn.query('SELECT sum(price) AS total FROM test WHERE cat = ?', [cat], function (error, result) {
 		  if (error) throw error;
-		  ret = result[0].total;
+		  let ret = result[0].total;
 		  resolve(ret);
 		});
 	});

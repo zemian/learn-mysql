@@ -2,6 +2,13 @@
 
 https://dev.mysql.com/doc/refman/8.0/en/
 
+## Setup testdb and table for test script
+
+```
+bin/createdb.sh
+mysql -u zemian -ptest123 testdb < examples/test.sql
+```
+
 ## New Database & User Setup
 
 ```sql
