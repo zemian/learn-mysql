@@ -2,7 +2,9 @@
 
 // Example to test simple CRUD operations
 function create_conn() {
-	$conn = new PDO('mysql:host=localhost;dbname=testdb', 'zemian', 'test123');
+	$env = json_decode(file_get_contents("../env.json"));
+	$dbcfg = $env->testdb;
+	$conn = new PDO($dbcfg->dns, $dbcfg->username, $dbcfg->passwd);
 	return $conn;
 }
 

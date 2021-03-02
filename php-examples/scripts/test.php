@@ -2,11 +2,9 @@
 
 // Example to test simple CRUD operations
 function create_conn() {
-	$host = "localhost";
-	$username = "zemian";
-	$password = "test123";
-	$dbname = "testdb";
-	$conn = new mysqli($host, $username, $password, $dbname);
+	$env = json_decode(file_get_contents("../env.json"));
+	$dbcfg = $env->testdb;
+	$conn = new mysqli($dbcfg->host, $dbcfg->username, $dbcfg->passwd, $dbcfg->dbname);
     return $conn;
 }
 
