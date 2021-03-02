@@ -27,6 +27,11 @@
                 <a href="employees.php">Employees</a>
             </div>
         </div>
+        <div class="column is-3">
+            <div class="notification is-info has-text-centered">
+                <a href="api/employees.php">Employees API</a>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -3,7 +3,7 @@ $config = json_decode(file_get_contents("env.json"));
 $db = $config->employeesdb;
 $conn = new PDO($db->dns, $db->username, $db->passwd);
 $stmt = $conn->query('SELECT * FROM employees ORDER BY RAND() LIMIT 25');
-$employees = $stmt->fetchAll();
+$employees = $stmt->fetchAll(PDO::FETCH_CLASS);
 ?>
 
 <!doctype html>
@@ -36,11 +36,11 @@ $employees = $stmt->fetchAll();
             </tr>
             <?php foreach ($employees as $emp) { ?>
             <tr>
-                <td><?php echo $emp['emp_no']; ?></td>
-                <td><?php echo $emp['first_name']; ?></td>
-                <td><?php echo $emp['last_name']; ?></td>
-                <td><?php echo $emp['gender']; ?></td>
-                <td><?php echo $emp['birth_date']; ?></td>
+                <td><?php echo $emp->emp_no; ?></td>
+                <td><?php echo $emp->first_name; ?></td>
+                <td><?php echo $emp->last_name; ?></td>
+                <td><?php echo $emp->gender; ?></td>
+                <td><?php echo $emp->birth_date; ?></td>
             </tr>
             <?php } ?>
         </table>
