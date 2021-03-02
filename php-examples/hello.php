@@ -1,7 +1,7 @@
 <?php
-
 $config = json_decode(file_get_contents("env.json"));
-$conn = new PDO($config->testdb->dns, $config->testdb->username, $config->testdb->passwd);
+$db = $config->testdb;
+$conn = new PDO($db->dns, $db->username, $db->passwd);
 $stmt = $conn->query('SELECT 1 + 1');
 $rows = $stmt->fetch();
 $db_test_result = $rows[0];
@@ -21,12 +21,12 @@ $db_test_result = $rows[0];
 
 <div class="hero is-primary">
     <div class="hero-body">
-        <h1 class="title">Learn MySQL Database</h1>
+        <h1 class="title"><a href="/">Learn MySQL Database</a></h1>
     </div>
 </div>
 <div class="section">
     <div class="container">
-        <h1>DB Test Result</h1>
+        <h1 class="title">Test Result</h1>
         <pre><?php print_r($db_test_result); ?></pre>
     </div>
 </div>

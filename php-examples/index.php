@@ -12,7 +12,7 @@
 
 <div class="hero is-primary">
     <div class="hero-body">
-        <h1 class="title">Learn MySQL Database</h1>
+        <h1 class="title"><a href="/">Learn MySQL Database</a></h1>
     </div>
 </div>
 <div class="section">
@@ -20,6 +20,11 @@
         <div class="column is-3">
             <div class="notification is-info has-text-centered">
                 <a href="hello.php">Hello</a>
+            </div>
+        </div>
+        <div class="column is-3">
+            <div class="notification is-info has-text-centered">
+                <a href="employees.php">Employees</a>
             </div>
         </div>
     </div>
