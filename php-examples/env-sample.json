@@ -1,0 +1,12 @@
+{
+    "testdb": {
+        "dns": "mysql:host=localhost;dbname=testdb",
+        "username": "",
+        "passwd": ""
+    },
+    "employeesdb": {
+        "dns": "mysql:host=localhost;dbname=employees",
+        "username": "",
+        "passwd": ""
+    }
+}

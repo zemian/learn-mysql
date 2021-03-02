@@ -22,11 +22,6 @@
                 <a href="hello.php">Hello</a>
             </div>
         </div>
-        <div class="column is-3">
-            <div class="notification is-info has-text-centered">
-                <a href="hello-pdo.php">Hello PDO</a>
-            </div>
-        </div>
     </div>
 </div>
 
