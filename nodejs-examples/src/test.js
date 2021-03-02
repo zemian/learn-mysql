@@ -5,8 +5,8 @@ let assert = require('assert');
 function createConn() {
 	let conn = mysql.createConnection({
 	  host     : 'localhost',
-	  user     : 'zemian',
-	  password : 'test123',
+	  user     : 'root',
+	  password : '',
 	  database : 'testdb'
 	});
 	conn.connect();

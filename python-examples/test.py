@@ -1,5 +1,5 @@
 import mysql.connector
-conn = mysql.connector.connect(user='zemian', password='test123', host='localhost', database='testdb')
+conn = mysql.connector.connect(user='root', password='', host='localhost', database='testdb')
 
 def select_all(conn):
 	cursor = conn.cursor()
