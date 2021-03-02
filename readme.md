@@ -4,22 +4,24 @@ https://dev.mysql.com/doc/refman/8.0/en/
 
 ## Setup testdb and table for test script
 
+Edit `bin/.env` with correct DB user and password before running!
+
 ```
 bin/createdb.sh
-mysql -u zemian -ptest123 testdb < examples/test.sql
+mysql -u zemian -p testdb < examples/test.sql
 ```
 
 ## New Database & User Setup
 
 ```sql
-CREATE USER IF NOT EXISTS 'zemian'@'localhost' IDENTIFIED BY 'test123';
+CREATE USER IF NOT EXISTS 'zemian'@'localhost' IDENTIFIED BY '';
 CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 ```
 
 To support older (MySQL 5) clients, it might be useful to create a user that uses older hashing algorithm
   
-  CREATE USER IF NOT EXISTS 'zemiannative'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+  CREATE USER IF NOT EXISTS 'zemiannative'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
   GRANT ALL PRIVILEGES ON testdb.* TO 'zemiannative'@'localhost';
 
 
@@ -149,12 +151,12 @@ Here is an example table and few rows of sample data for testing:
 
 The MySQL 8 default to use `caching_sha2_password`, while MySQL 5 is using `mysql_native_password`. The client must be supporting `caching_sha2_password` in order to connect. Otherwise, you need to change your DB user back to old password encryption like this:
 
-    CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+    CREATE USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
 
 
 Or to change it:
 
-    ALTER USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test123';
+    ALTER USER 'zemian'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
 
 See https://dev.mysql.com/doc/refman/8.0/en/native-pluggable-authentication.html
 
@@ -175,7 +177,7 @@ mysql -u root
 ```
 mysql -u root
 
-CREATE USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
+CREATE USER 'zemian'@'localhost' IDENTIFIED BY '';
 CREATE DATABASE testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON testdb.* TO 'zemian'@'localhost';
 FLUSH PRIVILEGES;
@@ -188,7 +190,7 @@ INSERT INTO config(name, value) values('foo', 'bar'), ('num', '123');
 
 ## How to update existing DB user password
 
-    ALTER USER 'zemian'@'localhost' IDENTIFIED BY 'test123';
+    ALTER USER 'zemian'@'localhost' IDENTIFIED BY '';
 
 NOTE: If you want empty password (eg: for root in local dev) then simply use empty quote!
 
