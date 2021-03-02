@@ -1,7 +1,7 @@
 <?php
 $env = json_decode(file_get_contents("env.json"));
-$config = $env->employeesdb;
-$conn = new PDO($config->dns, $config->username, $config->passwd);
+$dbcfg = $env->employeesdb;
+$conn = new PDO($dbcfg->dns, $dbcfg->username, $dbcfg->passwd);
 $stmt = $conn->query('SELECT * FROM employees ORDER BY RAND() LIMIT 25');
 $employees = $stmt->fetchAll(PDO::FETCH_CLASS);
 ?>

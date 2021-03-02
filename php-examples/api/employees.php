@@ -7,8 +7,8 @@ $total_count = $_GET['total_count'] ?? false;
 //print_r([$offset, $limit, $total_count]);
 
 $env = json_decode(file_get_contents("../env.json"));
-$config = $env->employeesdb;
-$conn = new PDO($config->dns, $config->username, $config->passwd);
+$dbcfg = $env->employeesdb;
+$conn = new PDO($dbcfg->dns, $dbcfg->username, $dbcfg->passwd);
 
 $stmt = $conn->prepare('SELECT * FROM employees LIMIT ?, ?');
 $stmt->bindValue(1, $offset, PDO::PARAM_INT);

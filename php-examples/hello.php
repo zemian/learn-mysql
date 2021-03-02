@@ -1,7 +1,7 @@
 <?php
 $env = json_decode(file_get_contents("env.json"));
-$config = $env->testdb;
-$conn = new PDO($config->dns, $config->username, $config->passwd);
+$dbcfg = $env->testdb;
+$conn = new PDO($dbcfg->dns, $dbcfg->username, $dbcfg->passwd);
 $stmt = $conn->query('SELECT 1 + 1');
 $rows = $stmt->fetch();
 $db_test_result = $rows[0];
